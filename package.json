@@ -1,0 +1,11 @@
+{
+  "name": "sm-map",
+  "version": "1.0.0",
+  "description": "Map a SurveyMonkey response to the survey and get a set of answers instead of IDs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
