@@ -39,6 +39,22 @@ exports.mapResponse = function(survey, response) {
 					});
 				}
 
+				if (q.family == 'multiple_choice') {
+					mappedQuestion.answer = [];
+					q.answers.choices.forEach(function(answer){
+						response.answers.forEach(function(a){
+							console.log("Checking answer " + answer.id + "against a " + a.choice_id);
+							if (answer.id == a.choice_id) {
+								mappedQuestion.answer.push(answer.text);
+							}
+						});
+					});
+				}
+
+				if (q.family == 'open_ended' && q.subtype == 'single') {
+					mappedQuestion.answer = response.answers[0].text;
+				}
+
 				mappedResponse.push(mappedQuestion);
 			}
 		});		
