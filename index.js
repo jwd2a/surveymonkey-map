@@ -1,3 +1,7 @@
+var singleChoice = require("./modules/single-choice");
+var multipleChoice = require("./modules/multiple-choice");
+var openEndedSingle = require("./modules/open-ended-single"); 
+
 /*
  * Takes a survey response and a survey object, and returns a survey response with answers mapped instead of IDs
  */
@@ -32,27 +36,15 @@ exports.mapResponse = function(survey, response) {
 				// Map answers based on what kind of question this is
 				
 				if (q.family == 'single_choice') {
-					q.answers.choices.forEach(function(answer){
-						if (answer.id == response.answers[0].choice_id){
-							mappedQuestion.answer = answer.text;
-						}
-					});
+					mappedQuestion.answer = singleChoice(q, response);	
 				}
 
 				if (q.family == 'multiple_choice') {
-					mappedQuestion.answer = [];
-					q.answers.choices.forEach(function(answer){
-						response.answers.forEach(function(a){
-							console.log("Checking answer " + answer.id + "against a " + a.choice_id);
-							if (answer.id == a.choice_id) {
-								mappedQuestion.answer.push(answer.text);
-							}
-						});
-					});
+					mappedQuestion.answer = multipleChoice(q, response);
 				}
 
 				if (q.family == 'open_ended' && q.subtype == 'single') {
-					mappedQuestion.answer = response.answers[0].text;
+					mappedQuestion.answer = openEndedSingle(q, response);	
 				}
 
 				mappedResponse.push(mappedQuestion);
@@ -61,6 +53,4 @@ exports.mapResponse = function(survey, response) {
 	});
 
 	console.log(mappedResponse);
-
-
 }

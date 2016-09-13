@@ -1,4 +1,4 @@
-var SM = require('./index');
+var SM = require('../index');
 
 var response = {
 	"total_time" : 5,
