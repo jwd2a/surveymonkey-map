@@ -55,9 +55,9 @@ exports.mapResponse = function(survey, response) {
 					//mappedQuestion.answer = matrixMenu(q, response);
 				/*}*/
 				
-				/*if (q.family == 'matrix' && q.subtype == 'ranking') {*/
-					//mappedQuestion.answer = matrixRanking(q, response);
-				/*}*/
+				if (q.family == 'matrix' && q.subtype == 'ranking') {
+					mappedQuestion.answer = matrixRanking(q, response);
+				}
 				
 				if (q.family == 'matrix' && q.subtype == 'rating') {
 					mappedQuestion.answer = matrixRating(q, response);

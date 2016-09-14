@@ -1,9 +1,21 @@
-module.exports = function(q, response){
-	var z;
-	q.answers.choices.forEach(function(answer){
-		if (answer.id == response.answers[0].choice_id){
-			z = answer.text;
-		}
+module.exports = function(q, response) {
+	var z = [];
+
+	response.answers.forEach(function(a){
+	
+		var selRow = q.answers.rows.find(function(row){
+			return row.id == a.row_id;	
+		});	
+
+		var selCol = q.answers.choices.find(function(choice){
+			return choice.id == a.choice_id;
+		});
+
+		z.push({
+			item: selRow.text,
+			answer: selCol.text
+		});	
 	});
 	return z;
 }
+
