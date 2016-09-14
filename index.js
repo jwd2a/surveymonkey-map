@@ -59,9 +59,9 @@ exports.mapResponse = function(survey, response) {
 					//mappedQuestion.answer = matrixRanking(q, response);
 				/*}*/
 				
-				/*if (q.family == 'matrix' && q.subtype == 'rating') {*/
-					//mappedQuestion.answer = matrixRating(q, response);
-				/*}*/
+				if (q.family == 'matrix' && q.subtype == 'rating') {
+					mappedQuestion.answer = matrixRating(q, response);
+				}
 					
 				if (q.family == 'single_choice' && q.subtype == 'menu') {
 					mappedQuestion.answer = singleChoiceMenu(q, response);
@@ -93,4 +93,28 @@ exports.mapResponse = function(survey, response) {
 	});
 
 	console.log(mappedResponse);
+}
+
+if (!Array.prototype.find) {
+	Array.prototype.find = function(predicate) {
+		'use strict';
+		if (this == null) {
+			throw new TypeError('Array.prototype.find called on null or undefined');
+		}
+		if (typeof predicate !== 'function') {
+			throw new TypeError('predicate must be a function');
+		}
+		var list = Object(this);
+		var length = list.length >>> 0;
+		var thisArg = arguments[1];
+		var value;
+
+		for (var i = 0; i < length; i++) {
+			value = list[i];
+			if (predicate.call(thisArg, value, i, list)) {
+				return value;
+			}
+		}
+		return undefined;
+	};
 }
