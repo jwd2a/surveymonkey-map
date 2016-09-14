@@ -3,8 +3,6 @@ module.exports = function(q, response) {
 
 	response.answers.forEach(function(a){
 		
-		// If there is only one row, without text, it's a star or NPS rating
-
 		if (q.answers.rows.length === 1 && q.answers.rows[0].text == "") {
 			var selCol = q.answers.choices.find(function(choice){
 				return choice.id == a.choice_id;

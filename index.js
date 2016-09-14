@@ -51,9 +51,9 @@ exports.mapResponse = function(survey, response) {
 					//mappedQuestion.answer = demographicInternational(q, response);
 				/*}*/
 				
-				/*if (q.family == 'matrix' && q.subtype == 'menu') {*/
-					//mappedQuestion.answer = matrixMenu(q, response);
-				/*}*/
+				if (q.family == 'matrix' && q.subtype == 'menu') {
+					mappedQuestion.answer = matrixMenu(q, response);
+				}
 				
 				if (q.family == 'matrix' && q.subtype == 'ranking') {
 					mappedQuestion.answer = matrixRanking(q, response);
