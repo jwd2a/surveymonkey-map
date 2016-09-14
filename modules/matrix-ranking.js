@@ -16,6 +16,7 @@ module.exports = function(q, response) {
 			answer: selCol.text
 		});	
 	});
+
 	return z;
 }
 

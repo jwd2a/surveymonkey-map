@@ -47,9 +47,9 @@ exports.mapResponse = function(survey, response) {
 					//mappedQuestion.answer = dateTimeBoth(q, response);
 				//}
 				
-				/*if (q.family == 'demographic' && q.subtype == 'international') {*/
-					//mappedQuestion.answer = demographicInternational(q, response);
-				/*}*/
+				if (q.family == 'demographic' && q.subtype == 'international') {
+					mappedQuestion.answer = demographicInternational(q, response);
+				}
 				
 				if (q.family == 'matrix' && q.subtype == 'menu') {
 					mappedQuestion.answer = matrixMenu(q, response);

@@ -1,9 +1,13 @@
 module.exports = function(q, response){
-	var z;
-	q.answers.choices.forEach(function(answer){
-		if (answer.id == response.answers[0].choice_id){
-			z = answer.text;
-		}
+	var z = {};
+	
+	response.answers.forEach(function(answer){
+		var selRow = q.answers.rows.find(function(row){
+			return row.id == answer.row_id;	
+		});	
+
+		z[selRow.text.trim()] = answer.text;
 	});
+
 	return z;
 }
