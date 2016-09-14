@@ -1,6 +1,14 @@
-var singleChoice = require("./modules/single-choice");
+var dateTimeBoth = require("./modules/datetime-both");
+var demographicInternational = require("./modules/demographic-international");
+var singleChoiceMenu = require("./modules/single-choice-menu");
+var matrixMenu = require("./modules/matrix-menu");
+var matrixRanking = require("./modules/matrix-ranking");
+var matrixRating = require("./modules/matrix-rating");
 var multipleChoice = require("./modules/multiple-choice");
+var openEndedEssay = require("./modules/open-ended-essay"); 
+var openEndedMulti = require("./modules/open-ended-multi"); 
 var openEndedSingle = require("./modules/open-ended-single"); 
+var singleChoice = require("./modules/single-choice");
 
 /*
  * Takes a survey response and a survey object, and returns a survey response with answers mapped instead of IDs
@@ -35,6 +43,30 @@ exports.mapResponse = function(survey, response) {
 				
 				// Map answers based on what kind of question this is
 				
+ /*       if (q.family == 'datetime' && q.subtype == 'both') {*/
+					//mappedQuestion.answer = dateTimeBoth(q, response);
+				//}
+				
+				/*if (q.family == 'demographic' && q.subtype == 'international') {*/
+					//mappedQuestion.answer = demographicInternational(q, response);
+				/*}*/
+				
+				/*if (q.family == 'matrix' && q.subtype == 'menu') {*/
+					//mappedQuestion.answer = matrixMenu(q, response);
+				/*}*/
+				
+				/*if (q.family == 'matrix' && q.subtype == 'ranking') {*/
+					//mappedQuestion.answer = matrixRanking(q, response);
+				/*}*/
+				
+				/*if (q.family == 'matrix' && q.subtype == 'rating') {*/
+					//mappedQuestion.answer = matrixRating(q, response);
+				/*}*/
+					
+				if (q.family == 'single_choice' && q.subtype == 'menu') {
+					mappedQuestion.answer = singleChoiceMenu(q, response);
+				}
+				
 				if (q.family == 'single_choice') {
 					mappedQuestion.answer = singleChoice(q, response);	
 				}
@@ -45,6 +77,14 @@ exports.mapResponse = function(survey, response) {
 
 				if (q.family == 'open_ended' && q.subtype == 'single') {
 					mappedQuestion.answer = openEndedSingle(q, response);	
+				}
+
+				if (q.family == 'open_ended' && q.subtype == 'essay') {
+					mappedQuestion.answer = openEndedEssay(q, response);
+				}
+
+				if (q.family == 'open_ended' && q.subtype == 'multi') {
+					mappedQuestion.answer = openEndedMulti(q, response);
 				}
 
 				mappedResponse.push(mappedQuestion);
